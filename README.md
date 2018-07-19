@@ -36,7 +36,7 @@ $.mdseos.init(
 ``` javascript
 $.mdseos.app_get_account(
   function(account_info){
-    console.log(account_info) //app return like this -- {"account":"ha4daobxg4ge","node":"1"}
+    console.log(account_info) //app return like this -- {"account":"medisharesbp","node":"1"}
     console.log($.mdseos.getAccount()) //getAccount() will return the latest account from app or setAccount()
   } //callback
 )
@@ -50,7 +50,7 @@ $.mdseos.get_currency_balance(
   function(balance){
     console.log(balance)
   },//callback
-  "ha4daobxg4ge", //account
+  "medisharesbp", //account
   function(){
     alert('failed!')
   }
