@@ -89,7 +89,7 @@ $.mdseos.app_create_transaction(
 ```
 
 
-##### 六、Push tansaction:
+##### 6. Push tansaction:
 
 ``` javascript
 $.mdseos.push_transaction_all(
