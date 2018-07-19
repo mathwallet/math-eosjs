@@ -30,6 +30,7 @@ $.mdseos.init(
 );
 ```
 
+Note: for eosforce mainnet, please use jsonRpc https://w1.eosforce.cn or https://w2.eosforce.cn
 
 ##### 2. Get the account of current wallet:
 
@@ -88,6 +89,7 @@ $.mdseos.app_create_transaction(
 );
 ```
 
+Note: this function will call APP's current EOS account and return the signed transaction data.
 
 ##### 6. Push tansaction:
 
