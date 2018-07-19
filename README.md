@@ -105,6 +105,16 @@ $.mdseos.push_transaction_all(
 );
 ```
 
+### Testing
+
+Math Wallet also provide a testing tool in [DApp] - [EOS DAPP Developer Browser] where you can enter your DAPP URL and test the functions.
+
+![](https://github.com/MediShares/mds-eosjs/blob/master/image/testing.jpg)
+
+
+### Download Math Wallet 麦子钱包下载
+
+[http://mathwallet.org](http://mathwallet.org)
 
 ### Developer
 
