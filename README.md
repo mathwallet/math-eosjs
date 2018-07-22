@@ -2,6 +2,7 @@
 
 ## A EOS jQuery plugin for Math Wallet APP
 
+麦子钱包 EOS DAPP 插件（基于 jQuery）
 
 ### File Specification
 
@@ -10,7 +11,6 @@
 
 
 ### Tutorial
-
 
 This plugin is used for interaction between DAPP (Web) and the Math Wallet APP.
 
@@ -91,6 +91,7 @@ $.mdseos.app_create_transaction(
 
 Note: this function will call APP's current EOS account and return the signed transaction data.
 
+
 ##### 6. Push tansaction:
 
 ``` javascript
@@ -104,6 +105,7 @@ $.mdseos.push_transaction_all(
   } //failed callback
 );
 ```
+
 
 ### Testing
 
@@ -119,3 +121,7 @@ Math Wallet also provide a testing tool in [DApp] - [EOS DAPP Developer Browser]
 ### Developer
 
 [Medishares](https://github.com/MediShares)
+
+If you would like to list your DAPP in Math Wallet, please send your DAPP information to hello@medishares.org
+
+如果您希望将您开发的DAPP加入麦子钱包，请通过邮箱联系我们 hello@medishares.org
