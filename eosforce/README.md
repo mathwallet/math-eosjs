@@ -54,16 +54,16 @@ $.eosforce.get_currency_balance(
 ```
 
 
-##### 4. Create action (for example: purchase RAM):
+##### 4. Create action:
 
 ``` javascript
-$.eosforce.create_action_buyram(
+$.eosforce.create_action_test(
   function(action){
     console.log(action)
   },
-  $.eosforce.getAccount(), // buyram payer
-  $.eosforce.getAccount(), // buyram receiver
-  '1.0000 EOS', // buyram quant
+  $.eosforce.getAccount(), // payer
+  $.eosforce.getAccount(), // receiver
+  '1.0000 EOS', // quant
   false, // to Bin ( app sign set false)
   failedCallback // failed callback
 );
