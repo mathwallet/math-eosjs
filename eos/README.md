@@ -7,7 +7,6 @@
 ### File Specification
 
 + jquery.mdseos.js -- For EOS
-+ jquery.eosforce.js -- For EOS FORCE
 
 
 ### Tutorial
@@ -15,8 +14,6 @@
 This plugin is used for interaction between DAPP (Web) and the Math Wallet APP.
 
 Simple way to use it:
-
-Note：for EOS please use```$.mdseos```, for EOS FORCE pelase use```$.eosforce```
 
 
 ##### 1. Please initialize BP information before using the plugin:
