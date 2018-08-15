@@ -62,6 +62,38 @@ $.extend({
       return this.chainID;
     },
 
+    //获取当前链ID
+    getChainID : function(){
+      return this.netChainID
+    },
+
+    //获取当前节点地址
+    getHttpEndPoint : function(){
+      return this.httpEndpoint
+    },
+
+    //获取eosjs
+    getEos : function(){
+      var customSignProvider = ({buf, sign, transaction}) => {
+        return new Promise((resolve, reject) => {
+          this.app_sign_transaction(
+            function(res){
+              resolve(res.signatures);
+            },
+            transaction,
+            function(err){
+              reject(err)
+            });
+        });
+      }
+
+      return Eos({
+        httpEndpoint: this.getHttpEndPoint(),
+        chainId: this.getChainID(),
+        signProvider: customSignProvider,
+      });
+    },
+
     //获取链信息
     get_info : function(callback,error){
       this.get(callback,this.httpEndpoint+this.apiConfig.get_info,error);
