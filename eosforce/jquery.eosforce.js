@@ -169,7 +169,7 @@ $.extend({
           $.eosforce.setAccount(accountInfo.account);
           $.eosforce.setNode(accountInfo.node);
           if(accountInfo.authority){
-            $.mdseos.setAccountPermission(accountInfo.authority);
+            this.setAccountPermission(accountInfo.authority);
           }
           callback(accountInfo);
         })

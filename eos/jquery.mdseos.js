@@ -162,7 +162,7 @@ $.extend({
           $.mdseos.setAccount(accountInfo.account);
           $.mdseos.setNode(accountInfo.node);
           if(accountInfo.authority){
-            $.mdseos.setAccountPermission(accountInfo.authority);
+            this.setAccountPermission(accountInfo.authority);
           }
           callback(accountInfo);
         })
