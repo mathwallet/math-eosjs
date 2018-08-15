@@ -22,7 +22,7 @@ Simple way to use it:
 $.eosforce.init(
   {"nodes":[
     {"jsonRpc":"https://w1.eosforce.cn","jsonRpcTrx":"https://w1.eosforce.cn","chainID":"bd61ae3a031e8ef2f97ee3b0e62776d6d30d4833c8f7c1645c657b149151004b"}, // 0: testnet-node ,jsonRpc: query-node ,jsonRpcTrx: transaction-node ,chainID: chainID
-    {"jsonRpc":"https:\/\/w2.eosforce.cn","jsonRpcTrx":"https://w2.eosforce.cn","chainID":"bd61ae3a031e8ef2f97ee3b0e62776d6d30d4833c8f7c1645c657b149151004b"}  // 1: mainnet-node ,jsonRpc: query-node ,jsonRpcTrx: transaction-node ,chainID: chainID
+    {"jsonRpc":"https://w2.eosforce.cn","jsonRpcTrx":"https://w2.eosforce.cn","chainID":"bd61ae3a031e8ef2f97ee3b0e62776d6d30d4833c8f7c1645c657b149151004b"}  // 1: mainnet-node ,jsonRpc: query-node ,jsonRpcTrx: transaction-node ,chainID: chainID
   ]}
 );
 ```
