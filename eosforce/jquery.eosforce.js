@@ -8,6 +8,7 @@ $.extend({
     chainID : null,
     netChainID : null,
     account : null,
+    accountPermission : 'active',
     nodes : [],
 
     apiConfig : {
@@ -34,11 +35,23 @@ $.extend({
     //设置活跃账号
     setAccount : function(account){
       this.account = account;
+      this.accountPermission = 'active';
     },
 
     //获取活跃账号
     getAccount : function(){
       return this.account;
+    },
+
+    //设置活跃账户权限
+    setAccountPermission : function(permission){
+      this.accountPermission = permission;
+    },
+
+
+    //获取活跃账户权限
+    getAccountPermission : function(){
+      return this.accountPermission;
     },
 
     //获取当前账号的社区
@@ -80,7 +93,11 @@ $.extend({
         return new Promise((resolve, reject) => {
           this.app_sign_transaction(
             function(res){
-              resolve(res.signatures);
+              if(res.error){
+                reject(res.error)
+              }else{
+                resolve(res.result);
+              }
             },
             transaction,
             function(err){
@@ -151,6 +168,9 @@ $.extend({
           var accountInfo = JSON.parse(res);
           $.eosforce.setAccount(accountInfo.account);
           $.eosforce.setNode(accountInfo.node);
+          if(accountInfo.permission){
+            $.mdseos.setAccountPermission(accountInfo.permission);
+          }
           callback(accountInfo);
         })
       }));
