@@ -21,8 +21,8 @@ Simple way to use it:
 ``` javascript
 $.mdseos.init(
   {"nodes":[
-    {"jsonRpc":"https:\/\/eostestnet.medishares.net"}, // 0: testnet-node
-    {"jsonRpc":"https:\/\/eosmainnet.medishares.net"}  // 1: mainnet-node
+    {"jsonRpc":"https:\/\/eostestnet.medishares.net",'chainID' => '2fd52147e10512439ec675898682d1baff40a5d530726244600ba145e2393444'}, // 0: testnet-node
+    {"jsonRpc":"https:\/\/eosmainnet.medishares.net",'chainID' => '2fd52147e10512439ec675898682d1baff40a5d530726244600ba145e2393444'}  // 1: mainnet-node
   ]}
 );
 ```
@@ -75,11 +75,11 @@ $.mdseos.create_action_buyram(
 ##### 5. Sign transaction:
 
 ``` javascript
-$.mdseos.app_create_transaction(
+$.eosforce.app_sign_transaction(
   function(transData){
     console.log(transData) //signed transaction
   }, //signed callback
-  [action], //actions
+  transaction, //transaction
   function(){
     alert('failed!')
   }  //failed callback

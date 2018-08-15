@@ -6,6 +6,7 @@ $.extend({
 
     httpEndpoint : null,
     chainID : null,
+    netChainID : null,
     account : null,
     nodes : [],
 
@@ -49,6 +50,7 @@ $.extend({
       if(this.nodes[chainID] && this.nodes[chainID].jsonRpc){
         this.chainID = chainID;
         this.httpEndpoint = this.nodes[chainID].jsonRpc;
+        this.netChainID = this.nodes[chainID].chainID;
         return true;
       }else{
         return false;
@@ -116,10 +118,13 @@ $.extend({
     },
 
     // MDSAPP 交易签名
-    app_sign_transaction : function(callback,actions,error){
+    app_sign_transaction : function(callback,transaction,error){
       this.postMessage(JSON.stringify({
         "method":"eosTransactionSign",
-        "params":{"actions":actions},
+        "params":{"transaction":transaction,"network":{
+          blockchain:"eos",
+          chainId:this.netChainID,
+        }},
         "callback":this.app_sign_global_callback(function(res){
           callback(JSON.parse(res));
         })

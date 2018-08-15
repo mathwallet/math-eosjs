@@ -6,6 +6,7 @@ $.extend({
 
     httpEndpoint : null,
     chainID : null,
+    netChainID : null,
     account : null,
     nodes : [],
 
@@ -50,6 +51,8 @@ $.extend({
       if(this.nodes[chainID] && this.nodes[chainID].jsonRpc){
         this.chainID = chainID;
         this.httpEndpoint = this.nodes[chainID].jsonRpc;
+        this.httpEndpointTrx = this.nodes[chainID].jsonRpcTrx;
+        this.netChainID = this.nodes[chainID].chainID;
         return true;
       }else{
         return false;
@@ -122,10 +125,13 @@ $.extend({
     },
 
     // MDSAPP 交易签名
-    app_sign_transaction : function(callback,actions,error){
+    app_sign_transaction : function(callback,transaction,error){
       this.postMessage(JSON.stringify({
         "method":"eosforceTransactionSign",
-        "params":{"actions":actions},
+        "params":{"transaction":transaction,"network":{
+          blockchain:"eosforce",
+          chainId:this.netChainID,
+        }},
         "callback":this.app_sign_global_callback(function(res){
           callback(JSON.parse(res));
         })
@@ -412,6 +418,7 @@ $.extend({
     },
 
     get : function(callback,url,error){
+      $.ajaxSettings.async = false;
       $.get({
         url : url,
         dataType : 'JSON',
@@ -425,9 +432,11 @@ $.extend({
           }
         }
       });
+      $.ajaxSettings.async = true;
     },
 
     post : function(callback,url,data,error){
+      $.ajaxSettings.async = false;
       return $.post({
         url : url,
         data : JSON.stringify(data),
@@ -443,6 +452,7 @@ $.extend({
           }
         }
       });
+      $.ajaxSettings.async = true;
     },
 
     dateToTime : function(date){
