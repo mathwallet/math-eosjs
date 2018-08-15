@@ -168,8 +168,8 @@ $.extend({
           var accountInfo = JSON.parse(res);
           $.eosforce.setAccount(accountInfo.account);
           $.eosforce.setNode(accountInfo.node);
-          if(accountInfo.permission){
-            $.mdseos.setAccountPermission(accountInfo.permission);
+          if(accountInfo.authority){
+            $.mdseos.setAccountPermission(accountInfo.authority);
           }
           callback(accountInfo);
         })

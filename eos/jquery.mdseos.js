@@ -161,8 +161,8 @@ $.extend({
           var accountInfo = JSON.parse(res);
           $.mdseos.setAccount(accountInfo.account);
           $.mdseos.setNode(accountInfo.node);
-          if(accountInfo.permission){
-            $.mdseos.setAccountPermission(accountInfo.permission);
+          if(accountInfo.authority){
+            $.mdseos.setAccountPermission(accountInfo.authority);
           }
           callback(accountInfo);
         })
