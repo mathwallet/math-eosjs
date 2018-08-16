@@ -162,6 +162,7 @@ $.extend({
 
     // MDSAPP 获取账号
     app_get_account : function(callback){
+      var that = this;
       this.postMessage(JSON.stringify({
         "method":"eosforceGetAccount",
         "callback":this.app_sign_global_callback(function(res){
@@ -169,7 +170,7 @@ $.extend({
           $.eosforce.setAccount(accountInfo.account);
           $.eosforce.setNode(accountInfo.node);
           if(accountInfo.authority){
-            this.setAccountPermission(accountInfo.authority);
+            that.setAccountPermission(accountInfo.authority);
           }
           callback(accountInfo);
         })
