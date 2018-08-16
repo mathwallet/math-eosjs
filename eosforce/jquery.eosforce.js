@@ -23,6 +23,7 @@ $.extend({
       abi_json_to_bin : '/v1/chain/abi_json_to_bin',
       get_account_registed : '/v1/chain/get_account',
       get_actions : '/v1/history/get_actions',
+      get_required_fee : '/v1/chain/get_required_fee',
     },
 
     //初始化
@@ -82,6 +83,11 @@ $.extend({
       return this.netChainID
     },
 
+    //获取链信息
+    get_info : function(callback,error){
+      this.get(callback,this.httpEndpointTrx+this.apiConfig.get_info,error);
+    },
+
     //获取当前节点地址
     getHttpEndPoint : function(){
       return this.httpEndpoint
@@ -90,6 +96,12 @@ $.extend({
     //获取eosjs
     getEos : function(){
       var customSignProvider = ({buf, sign, transaction}) => {
+        
+        // 获取fee
+        this.get_required_fee(function(res){
+          transaction['fee'] = res.required_fee;
+        },{"transaction":{"actions":transaction.actions}},function(){});
+
         return new Promise((resolve, reject) => {
           this.app_sign_transaction(
             function(res){
@@ -113,14 +125,9 @@ $.extend({
       });
     },
 
-    //获取链信息
-    get_info : function(callback,error){
-      this.get(callback,this.httpEndpoint+this.apiConfig.get_info,error);
-    },
-
     //获取块信息
     get_block : function(callback,number,error){
-      this.post(callback,this.httpEndpoint+this.apiConfig.get_block,{"block_num_or_id":number},error);
+      this.post(callback,this.httpEndpointTrx+this.apiConfig.get_block,{"block_num_or_id":number},error);
     },
 
     //序列化
@@ -133,7 +140,7 @@ $.extend({
     //发起交易
     push_transaction : function(callback,transaction,signatures,compression,error){
       if(!compression) compression = "none";
-      this.post(callback,this.httpEndpoint+this.apiConfig.push_transaction,{
+      this.post(callback,this.httpEndpointTrx+this.apiConfig.push_transaction,{
         compression : compression,
         transaction : transaction,
         signatures : signatures,
@@ -142,7 +149,7 @@ $.extend({
 
     //发起交易 - 传入完整数据
     push_transaction_all : function(callback,data,error){
-      this.post(callback,this.httpEndpoint+this.apiConfig.push_transaction,data,error);
+      this.post(callback,this.httpEndpointTrx+this.apiConfig.push_transaction,data,error);
     },
 
     // 注册供APP使用的全局回调
@@ -466,6 +473,17 @@ $.extend({
           "table_key": account,
           "json":  true
         },
+        error
+      );
+    },
+
+    //获取矿工费
+    get_required_fee : function(callback,transaction,error){
+      console.log(transaction);
+      this.post(
+        function(res){ callback(res); },
+        this.httpEndpoint+this.apiConfig.get_required_fee,
+        transaction,
         error
       );
     },
