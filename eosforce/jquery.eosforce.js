@@ -95,14 +95,14 @@ $.extend({
 
     //获取eosjs
     getEos : function(){
-      var customSignProvider = ({buf, sign, transaction}) => {
+      var customSignProvider = function(buf, sign, transaction){
         
         // 获取fee
         this.get_required_fee(function(res){
           transaction['fee'] = res.required_fee;
         },{"transaction":{"actions":transaction.actions}},function(){});
 
-        return new Promise((resolve, reject) => {
+        return new Promise(function(resolve, reject){
           this.app_sign_transaction(
             function(res){
               if(res.error){
