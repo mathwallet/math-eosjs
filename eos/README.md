@@ -104,6 +104,20 @@ $.mdseos.push_transaction_all(
 ```
 
 
+##### 7. Use Eos.js:
+
+``` javascript
+// include eos.js first
+<!-- <script src="https://cdn.jsdelivr.net/npm/eosjs@16.0.0/lib/eos.min.js"></script> -->
+
+// after get account (step 2) get Eos.js
+var eos = $.mdseos.getEos();
+
+//do something with eos.js => https://github.com/EOSIO/eosjs
+eos.getBlock(1)
+```
+
+
 ### Testing
 
 Math Wallet also provide a testing tool in [DApp] - [EOS DAPP Developer Browser] where you can enter your DAPP URL and test the functions.
