@@ -95,15 +95,15 @@ $.extend({
 
     //获取eosjs
     getEos : function(){
+      var that = this;
       var customSignProvider = function({buf, sign, transaction}){
-        
         // 获取fee
         $.eosforce.get_required_fee(function(res){
           transaction['fee'] = res.required_fee;
         },{"transaction":{"actions":transaction.actions}},function(){});
 
-        return new Promise(function(resolve, reject){
-          $.eosforce.app_sign_transaction(
+        return new Promise((resolve, reject) => {
+          that.app_sign_transaction(
             function(res){
               if(res.error){
                 reject(res.error)
