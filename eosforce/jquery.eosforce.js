@@ -90,7 +90,7 @@ $.extend({
     //获取eosjs
     getEos : function(){
       var that = this;
-      var customSignProvider = ({buf, sign, transaction}) => {
+      var customSignProvider = function({buf, sign, transaction}){
         return new Promise((resolve, reject) => {
           that.app_sign_transaction(
             function(res){
