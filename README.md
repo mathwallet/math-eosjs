@@ -4,7 +4,9 @@
 
 ## [EOS Force JS](https://github.com/MediShares/mds-eosjs/blob/master/eosforce/README.md)
 
-## [ETH JS](https://github.com/MediShares/mds-eosjs/blob/master/eth/README.md)
+## Other Chain
+
+### [ETH JS](https://github.com/MediShares/mds-ethjs/blob/master/eth/README.md)
 
 
 ### Download Math Wallet 麦子钱包下载
