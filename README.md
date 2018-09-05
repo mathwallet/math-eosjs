@@ -1,8 +1,14 @@
 # For Math Wallet DAPP Developer
 
-## [EOS JS](https://github.com/MediShares/mds-eosjs/blob/master/eos/README.md)
+## Method 1: Math Wallet is already compatible with Scatter
 
-## [EOS Force JS](https://github.com/MediShares/mds-eosjs/blob/master/eosforce/README.md)
+https://get-scatter.com/docs/dev/getting-started
+
+## Method 2: Using Math Wallet EOS JS API
+
+### [EOS JS](https://github.com/MediShares/mds-eosjs/blob/master/eos/README.md)
+
+### [EOS Force JS](https://github.com/MediShares/mds-eosjs/blob/master/eosforce/README.md)
 
 ## Other Chain
 
