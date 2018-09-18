@@ -2,19 +2,29 @@
 
 ## A EOS jQuery plugin for Math Wallet APP
 
-麦子钱包 EOS DAPP 插件（基于 jQuery）
+麦子钱包 EOS DAPP 插件（基于 jQuery），提供了简单的开发模板和JS库，可以快速为 EOS DAPP 构建非常美观的前端界面
 
-### File Specification
+### 核心文件
 
-+ jquery.mdseos.js -- For EOS
+jquery.mdseos.js
 
+### 示例项目
 
-### Tutorial
+#### sample04
+
+提供了按钮触发查询当前账户名、查询余额、购买内存的 DAPP。
+
+也可以通过该链接访问 http://developer.mathwallet.org/sample04/
+
+#### sample05
+
+提供了样板 DAPP 小协议的完整代码。
+
+也可以通过该链接访问 http://developer.mathwallet.org/sample05/
+
+### 代码段功能示例
 
 This plugin is used for interaction between DAPP (Web) and the Math Wallet APP.
-
-Simple way to use it:
-
 
 ##### 1. Please initialize BP information before using the plugin:
 
@@ -27,7 +37,6 @@ $.mdseos.init(
 );
 ```
 
-Note: for eosforce mainnet, please use jsonRpc https://w1.eosforce.cn or https://w2.eosforce.cn
 
 ##### 2. Get the account of current wallet:
 

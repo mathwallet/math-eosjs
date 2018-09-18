@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>账号测试</title>
+    <meta id="i18n_pagename" content="message">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://static.medishares.net/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://static.medishares.net/css/common.css?v=2018082901">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="https://static.medishares.net/js/vue.min.js"></script>
+    <script src="https://static.medishares.net/js/common.js?v=2018082901"></script>
+</head>
+<body>
+<div class="mds-group">
+<link href="https://static.medishares.net/css/market/qixi2018.css" rel="stylesheet">
+
+<div class="qixi">
+  <div class="card">
+    <a href="javascript:;" class="confirm" id="acct">查看账号</a>
+    <br>
+    <a href="javascript:;" class="confirm" id="bal">查看余额</a>
+    <br>
+    <a href="javascript:;" class="confirm" id="buy">购买 1 EOS 的 RAM</a>
+  </div>
+</div>
+
+<!-- loading -->
+<div id="app_loading" v-bind:class="{hide:!loading}"></div>
+<!-- 额外js -->
+<script src='https://static.medishares.net/js/plugins/lottie_light.min.js'></script>
+<script type="text/javascript">
+  $(function(){
+    lottie.loadAnimation({
+      container: $('#app_loading')[0], // the dom element that will contain the animation
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'https://static.medishares.net/js/plugins/loading.json' // the path to the animation json
+    });
+  })
+</script>
+
+<!-- import eosjs & mds-eosjs plugin -->
+<script src="js/eos.min.js"></script>
+<script src="js/jquery.mdseos.js"></script>
+
+<script type="text/javascript">
+
+  var pageData = {
+    // pageInit : true,
+    loading : true
+  }
+
+  var vote1Vue = new Vue({
+    el: '.mds-group',
+    data: pageData,
+  })
+
+  $(function(){
+
+    $.mdseos.init(
+      {"nodes":[
+        {"jsonRpc":"https:\/\/jungle.eosio.cr:443","chainID":"038f4b0fc8ff18a4f0842a8f0564611f6e96e8535901dd45e43ac8691a1c4dca"}, // 0: jungle-testnet-node
+        {"jsonRpc":"https:\/\/mainnet.eoscannon.io","chainID":"aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906"}  // 1: mainnet-node, https may needed
+      ]});
+
+    $.mdseos.app_get_account(function(){
+      pageData.loading = false;
+    });
+
+    // 我的协议
+    $('#acct').on('click',function(){
+      var account = $.mdseos.getAccount();
+      alert(account);
+    })
+
+    $('#bal').on('click',function(){
+      $.mdseos.get_currency_balance(
+        function(balance){
+          alert(balance['EOS']+' EOS');
+        }, //success callback
+        $.mdseos.getAccount(), //account
+        function(){
+          alert('get balance failed!');
+        } //error callback
+      );
+    })
+
+    $('#buy').on('click',function(){
+
+      var failedCallback = function(){
+        alert('Buy RAM Failed');
+      }
+      // first : Create Buy Ram Action
+      $.mdseos.create_action_buyram(
+        function(action){
+            //after create Buy Ram Action succeeded,
+            //Second : send action(s) to Math Wallet App , will return signed transaction
+            //need user input account password before sign transaction in APP
+            $.mdseos.app_create_transaction(
+              function(transData){
+                    //Finally : push signed transaction to eos node
+                    $.mdseos.push_transaction_all(
+                      function(){
+                        alert('Success');
+                      }, // push transaction success callback
+                      transData, //signed transaction from app
+                      failedCallback //push failed callback
+                    );
+              }, //app sign transaction success callback
+              [action], //actions
+              failedCallback // failed callback
+            );
+        }, // create action success callback
+        $.mdseos.getAccount(), // buyram payer
+        $.mdseos.getAccount(), // buyram receiver
+        '1.0000 EOS', // buyram quant
+        false, // to Bin ( app sign set false)
+        failedCallback // failed callback
+      );
+    })
+
+  })
+</script>
+
+</div>
+</body>
+</html>

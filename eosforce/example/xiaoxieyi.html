@@ -41,7 +41,6 @@
 				<li>老公给老婆做饭协议</li>
 				<li>我要成功减肥二十斤的协议…</li>
 			</ul>
-			<a href="http://blog.medishares.org/?p=458" class="card"><img src="https://static.medishares.net/img/market/Valentine's Day_Banner.jpg" width='100%'></a>
 		</li>
 		<li>
 			<h3>关于加密</h3>
@@ -84,13 +83,17 @@
 
 	$(function(){
 		// 初始化
-    $.eosforce.init({"nodes":[{"jsonRpc":"https:\/\/eosforcenet.medishares.net","jsonRpcTrx":"https:\/\/eosforcenettrx.medishares.net","chainID":"bd61ae3a031e8ef2f97ee3b0e62776d6d30d4833c8f7c1645c657b149151004b"},{"jsonRpc":"https:\/\/eosforcenet.medishares.net","jsonRpcTrx":"https:\/\/eosforcenettrx.medishares.net","chainID":"bd61ae3a031e8ef2f97ee3b0e62776d6d30d4833c8f7c1645c657b149151004b"}]});
+    $.eosforce.init(
+      {"nodes":[
+        {"jsonRpc":"https:\/\/eosforcenet.medishares.net","jsonRpcTrx":"https:\/\/eosforcenettrx.medishares.net","chainID":"bd61ae3a031e8ef2f97ee3b0e62776d6d30d4833c8f7c1645c657b149151004b"}, // 0: testnet-node
+        {"jsonRpc":"https:\/\/eosforcenet.medishares.net","jsonRpcTrx":"https:\/\/eosforcenettrx.medishares.net","chainID":"bd61ae3a031e8ef2f97ee3b0e62776d6d30d4833c8f7c1645c657b149151004b"} // 1: mainnet-node, https may needed
+      ]});
 
     // 获取账户
   	$.eosforce.app_get_account(function(){
   		pageData.loading = false;
   	});
-   	
+
 		// 发起交易
 		$('.confirm').on('click',function(){
 			$.eosforce.app_get_account(function(){
@@ -148,7 +151,7 @@
     	window.location.href='https://eosgod.one/account/xiaoxieyi';
     })
 
-		// 页面相关 
+		// 页面相关
 		$('.encryption').on('click',function(){
 			$(this).toggleClass('checked');
 		})
