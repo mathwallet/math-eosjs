@@ -14,13 +14,13 @@ jquery.mdseos.js
 
 提供了按钮触发查询当前账户名、查询余额、购买内存的 DAPP。
 
-也可以通过该链接访问 http://developer.mathwallet.org/sample04/
+也可以通过麦子钱包DAPP浏览器访问 http://developer.mathwallet.org/sample04/
 
 #### sample05
 
 提供了样板 DAPP 小协议的完整代码。
 
-也可以通过该链接访问 http://developer.mathwallet.org/sample05/
+也可以通过麦子钱包DAPP浏览器访问 http://developer.mathwallet.org/sample05/
 
 ### 代码段功能示例
 
