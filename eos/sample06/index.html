@@ -108,9 +108,11 @@
         recvarr=recvs.split("\n"); //字符分割
         for (i=0;i<recvarr.length ;i++ )
         {
-          tmpdata = '{"account": "eosio.token","name": "transfer","authorization": [{"actor": "' +account+ '","permission": "' +permission+ '"}],"data": {"from": "' +account+ '","to": "' +recvarr[i]+ '","quantity": "0.0001 EOS","memo": "' +comment+ '"}}';
-          // console.log(tmpdata);
-          actionsArr.push(JSON.parse(tmpdata));
+          if (recvarr[i] != ''){
+            tmpdata = '{"account": "eosio.token","name": "transfer","authorization": [{"actor": "' +account+ '","permission": "' +permission+ '"}],"data": {"from": "' +account+ '","to": "' +recvarr[i]+ '","quantity": "0.0001 EOS","memo": "' +comment+ '"}}';
+            // console.log(tmpdata);
+            actionsArr.push(JSON.parse(tmpdata));
+          }
         }
 
         // alert(actionsArr);
