@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SEVEN</title>
+    <meta id="i18n_pagename" content="message">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://static.medishares.net/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://static.medishares.net/css/common.css?v=2018082901">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="https://static.medishares.net/js/vue.min.js"></script>
+    <script src="https://static.medishares.net/js/common.js?v=2018082901"></script>
+</head>
+<body>
+<div class="mds-group">
+    <link href="https://static.medishares.net/css/market/qixi2018.css" rel="stylesheet">
+<div class="qixi">
+	<div class="card" style="text-align:center">
+  <img src="./seven.jpg" alt="" style="width:60%;">
+		<a href="javascript:;" class="confirm">点击领取 10000 SEVEN</a>
+	</div>
+	<div style="clear: both;"></div>
+	<ul class="qixi-about">
+		<li>
+			<h3>关于 SEVEN</h3>
+			<div><a href="https://www.se7ens.io/">查看 SEVEN 官网</a></div>
+		</li>
+	</ul>
+</div>
+
+<!-- loading -->
+<div id="app_loading" v-bind:class="{hide:!loading}"></div>
+<!-- 额外js -->
+<script src='https://static.medishares.net/js/plugins/lottie_light.min.js'></script>
+<script type="text/javascript">
+  $(function(){
+    lottie.loadAnimation({
+      container: $('#app_loading')[0], // the dom element that will contain the animation
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'https://static.medishares.net/js/plugins/loading.json' // the path to the animation json
+    });
+  })
+</script>
+
+<script src="js/md5.js"></script>
+
+<!-- import eosjs & mds-eosjs plugin -->
+<script src="js/eos.min.js"></script>
+<script src="js/jquery.mdseos.js"></script>
+
+<script type="text/javascript">
+
+	var pageData = {
+		// pageInit : true,
+	  loading : true
+	}
+
+	var vote1Vue = new Vue({
+	  el: '.mds-group',
+	  data: pageData,
+	})
+
+	$(function(){
+
+    $.mdseos.init(
+      {"nodes":[
+        {"jsonRpc":"https:\/\/jungle.eosio.cr","chainID":"038f4b0fc8ff18a4f0842a8f0564611f6e96e8535901dd45e43ac8691a1c4dca"}, // 0: jungle-testnet-node
+        {"jsonRpc":"https:\/\/mainnet.eoscannon.io","chainID":"aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906"}  // 1: mainnet-node, https may needed
+      ]});
+
+  	$.mdseos.app_get_account(function(){
+  		pageData.loading = false;
+  	});
+
+		// 发起交易
+		$('.confirm').on('click',function(){
+			$.mdseos.app_get_account(function(){
+	  		account = $.mdseos.getAccount();
+	  		permission = $.mdseos.getAccountPermission();
+
+	  	  var mdseos = $.mdseos.getEos();
+
+	  	  //发起购买交易
+	  	  var transaction = mdseos.transaction({
+	  	    actions:[
+	  	      {
+	  	        account: 'xxxsevensxxx',
+	  	        name: 'signup',
+	  	        authorization: [{
+	  	          actor: account,
+	  	          permission: permission
+	  	        }],
+	  	        data: {
+	  	          owner: account,
+	  	          quantity: '10000.0000 SEVEN'
+	  	        }
+	  	      }
+	  	    ]
+	  	  },function(error, result){
+	  	    if(error){
+	  	      alert( JSON.parse(error).error.details[0].message );
+	  	    }else{
+	  	      alert('领取成功！');
+	  	      window.location.reload();
+	  	    }
+	  	  });
+	  	 });
+    });
+
+	})
+</script>
+
+</div>
+</body>
+</html>
