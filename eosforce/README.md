@@ -7,7 +7,8 @@
 ### File Specification
 
 + jquery.eosforce.js -- For EOS FORCE
-
++ jquery-3.2.1.min.js
++ common.js -- For MathWallet APP
 
 ### Tutorial
 

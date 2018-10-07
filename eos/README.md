@@ -6,7 +6,7 @@
 
 ### 核心文件
 
-jquery.mdseos.js
+jquery.mdseos.js / jquery-3.2.1.min.js / common.js
 
 ### 示例项目
 
