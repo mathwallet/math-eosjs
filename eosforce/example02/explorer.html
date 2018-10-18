@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>redirect</title>
+    <meta id="i18n_pagename" content="message">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script src="https://static.medishares.net/js/jquery-3.2.1.min.js"></script>
+    <script src="https://static.medishares.net/js/common.js?v=2018082901"></script>
+</head>
+<body>
+<div class="mds-group">
+loading...
+
+<script src="https://static.medishares.net/js/eos.min.js"></script>
+<script src="https://static.medishares.net/js/jquery.eosforce.js"></script>
+
+<script type="text/javascript">
+
+   $(function() {
+
+    (function ($) {
+        $.getUrlParam = function (name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+    })(jQuery);
+
+    $.eosforce.init(
+      {"nodes":[
+        {"jsonRpc":"https:\/\/eosforcenet.medishares.net","jsonRpcTrx":"https:\/\/eosforcenettrx.medishares.net","chainID":"bd61ae3a031e8ef2f97ee3b0e62776d6d30d4833c8f7c1645c657b149151004b"}, // 0: testnet-node
+        {"jsonRpc":"https:\/\/eosforcenet.medishares.net","jsonRpcTrx":"https:\/\/eosforcenettrx.medishares.net","chainID":"bd61ae3a031e8ef2f97ee3b0e62776d6d30d4833c8f7c1645c657b149151004b"} // 1: mainnet-node, https may needed
+      ]});
+
+    $.eosforce.app_get_account(function(){
+      var account = $.eosforce.getAccount();
+
+      var dapp = $.getUrlParam('dapp');
+
+      switch(dapp)
+      {
+        case 'eosgod':
+          window.location.href='https://eosgod.one/account/'+account;
+          break;
+        default:
+          window.location.href='https://explorer.eosforce.io/#/cn/search_res_view/'+account+'/_/_/_';
+      }
+
+    });
+
+
+   });
+
+
+
+
+</script>
+
+</div>
+</body>
+</html>
