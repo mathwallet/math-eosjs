@@ -17,12 +17,12 @@
     <link href="https://static.medishares.net/css/market/qixi2018.css" rel="stylesheet">
 <div class="qixi">
 	<div class="card" style="text-align:center">
-		<a class="confirm" onclick="transferTrx()">Pay with EOS</a>
+		<a class="confirm" onclick="opendappURL()">Open DAPP URL</a>
 	</div>
 	<div style="clear: both;"></div>
 	<ul class="qixi-about">
 		<li>
-      <h3>该示例展示通过链接打开麦子钱包，并进行支付的DEMO</h3>
+      <h3>该示例展示通过链接打开麦子钱包，跳转DAPP网页</h3>
       <h3>请使用手机浏览器打开本页面，点击上面的按钮</h3>
       <h3>详细SDK方案查看：<a href="http://doc.mathwallet.org" style="color:#fff">MathWallet SDK</a></h3>
 		</li>
@@ -30,24 +30,17 @@
 </div>
 
 <script type="text/javascript">
-      function transferTrx(){
+      function opendappURL(){
         var params = {
+          "action": "openUrl",
+          "protocol": "SimpleWallet",
+          "dappUrl": "https://gateway.eosdt.com/",
+          "dappName": "MathWalletSDK-Demo",
           "blockchain": "eosio",
           "version": "1.0",
-          "protocol": "SimpleWallet",
-          "amount": "1.0000",
-          "symbol": "EOS",
-          "expired": 1546597930,
-          "from": "",
-          "to": "sendeostoken",
-          "dappIcon": "http://www.mathwallet.org/images/download/wallet_cn.png",
-          "dappData": "memo",
-          "desc": "payment description",
-          "action": "transfer",
-          "dappName": "MathWalletSDK-Demo",
-          "precision": 4,
-          "contract": "eosio.token",
-          "callback": "mathwalletdemos://mathwalletsdk?action=transfer"
+          "callback": "mathwalletdemos://mathwalletsdk?action=openUrl",
+          "desc": "",
+          "dappIcon": ""
         };
         window.location.href = "mathwallet://mathwallet.org?param="+JSON.stringify(params);
       }
