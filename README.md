@@ -45,6 +45,10 @@ More samples:
 
 https://github.com/MediShares/scatter-eos-sample
 
+More information from Scatter:
+
+https://github.com/GetScatter/scatter-js
+
 ### Other Methods
 
 http://doc.mathwallet.org/en/eos/
